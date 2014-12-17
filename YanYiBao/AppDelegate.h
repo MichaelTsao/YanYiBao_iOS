@@ -7,9 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate,MBProgressHUDDelegate>
+{
+    UITabBarController *tabViewController;
+    MBProgressHUD *HUD;
+}
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UITabBarController *tabViewController;
+
+-(void)hideLoading;
+-(void)showLoading:(NSString *)info;
 
 @end

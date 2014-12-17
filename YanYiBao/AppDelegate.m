@@ -7,8 +7,15 @@
 //
 
 #import "AppDelegate.h"
+#import "HomeViewController.h"
+#import "SecondViewController.h"
+#import "ThirdViewController.h"
+#import "ForthViewController.h"
+#import "UIColor+Helper.h"
+#import "UserInfoData.h"
 
 @implementation AppDelegate
+@synthesize tabViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -16,7 +23,68 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithHexString:@"#df4b48" withAlpha:1.0]];
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackTranslucent];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    tabViewController = [[UITabBarController alloc] init];
+    [self.window setRootViewController:tabViewController];
+    
+    HomeViewController *homeVC = [[HomeViewController alloc] init];
+    UINavigationController *homeNav = [[UINavigationController alloc] initWithRootViewController:homeVC];
+    homeNav.navigationBarHidden = YES;
+    
+    ThirdViewController *thirdVC = [[ThirdViewController alloc] init];
+    UINavigationController *thirdNav = [[UINavigationController alloc] initWithRootViewController:thirdVC];
+    thirdNav.navigationBarHidden = YES;
+    
+    ForthViewController *forthVC = [[ForthViewController alloc] init];
+    UINavigationController *forthNav = [[UINavigationController alloc] initWithRootViewController:forthVC];
+    tabViewController.viewControllers = [NSArray arrayWithObjects:homeNav, thirdNav, forthNav ,nil];
+    
+    UITabBar *tabBar = tabViewController.tabBar;
+    UITabBarItem *tabBarItem1 = [tabBar.items objectAtIndex:0];
+    UITabBarItem *tabBarItem2 = [tabBar.items objectAtIndex:1];
+    UITabBarItem *tabBarItem3 = [tabBar.items objectAtIndex:2];
+    
+    tabBar.tintColor = [UIColor colorWithHexString:@"#df4b48" withAlpha:1.0];
+    
+    UIImage *itme1 = [UIImage imageNamed:@"repertoire"];
+    UIImage *itme2 = [UIImage imageNamed:@"my"];
+    UIImage *itme3 = [UIImage imageNamed:@"more"];
+    
+    tabBarItem1.title = @"剧目";
+    tabBarItem2.title = @"我的";
+    tabBarItem3.title = @"更多";
+    
+    tabBarItem1.image = itme1;
+    tabBarItem2.image = itme2;
+    tabBarItem3.image = itme3;
+    
     return YES;
+}
+
+-(void)showLoading:(NSString *)info
+{
+    if (!info) {
+        info = @"正在加载...";
+    }
+    if (!HUD) {
+        HUD = [[MBProgressHUD alloc] initWithView:self.window];
+        HUD.delegate = self;
+    }
+    [self.window addSubview:HUD];
+    HUD.labelText = info;
+    [HUD show:YES];
+}
+
+-(void)hideLoading
+{
+    if(HUD){
+        [HUD hide:YES];
+        [HUD removeFromSuperview];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

@@ -1,0 +1,143 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/185/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking
+END
+AFHTTPClient.m
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/169/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/AFHTTPClient.m
+END
+AFNetworking.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/169/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/AFNetworking.h
+END
+Reachability.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/185/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/Reachability.h
+END
+AFXMLRequestOperation.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/169/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/AFXMLRequestOperation.h
+END
+AFNetworkActivityIndicatorManager.h
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/169/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/AFNetworkActivityIndicatorManager.h
+END
+Reachability.m
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/185/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/Reachability.m
+END
+UIImageView+AFNetworking.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/169/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/UIImageView+AFNetworking.h
+END
+AFXMLRequestOperation.m
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/169/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/AFXMLRequestOperation.m
+END
+AFURLConnectionOperation.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/169/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/AFURLConnectionOperation.h
+END
+AFNetworkActivityIndicatorManager.m
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/169/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/AFNetworkActivityIndicatorManager.m
+END
+AFJSONRequestOperation.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/169/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/AFJSONRequestOperation.h
+END
+UIImageView+AFNetworking.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/169/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/UIImageView+AFNetworking.m
+END
+AFJSONUtilities.h
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/169/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/AFJSONUtilities.h
+END
+AFJSONRequestOperation.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/169/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/AFJSONRequestOperation.m
+END
+AFURLConnectionOperation.m
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/169/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/AFURLConnectionOperation.m
+END
+AFHTTPRequestOperation.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/169/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/AFHTTPRequestOperation.h
+END
+AFPropertyListRequestOperation.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/169/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/AFPropertyListRequestOperation.h
+END
+AFJSONUtilities.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/169/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/AFJSONUtilities.m
+END
+AFImageRequestOperation.h
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/169/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/AFImageRequestOperation.h
+END
+AFHTTPRequestOperation.m
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/169/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/AFHTTPRequestOperation.m
+END
+AFHTTPClient.h
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/169/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/AFHTTPClient.h
+END
+AFPropertyListRequestOperation.m
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/169/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/AFPropertyListRequestOperation.m
+END
+AFImageRequestOperation.m
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/169/gonglue/ZCStrategy/1.1/ThredFrameworks/AFNetworking/AFImageRequestOperation.m
+END
