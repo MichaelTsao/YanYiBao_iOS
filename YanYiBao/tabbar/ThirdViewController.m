@@ -53,7 +53,7 @@
     
     UILabel *lab2 = [[UILabel alloc] init];
     [lab2 setFrame:CGRectMake(240, 120, 80, 20)];
-    [lab2 setText:@"积分：200"];
+    [lab2 setText:@"积分：0"];
     [lab2 setFont:[UIFont systemFontOfSize:12]];
     [lab2 setTextColor:[UIColor whiteColor]];
     [lab2 setBackgroundColor:[UIColor clearColor]];

@@ -57,7 +57,7 @@
 -(void)sendRequest
 {
     NSString *path = @"/show/program";
-    NSString *proId = [NSString stringWithFormat:@"%d",_programId];
+    NSString *proId = [NSString stringWithFormat:@"%ld",(long)_programId];
     NSDictionary *param = @{@"id":proId};
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",HOSTURL]];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:url];
@@ -78,7 +78,7 @@
 
 -(void)initView
 {
-    CGRect table_frame = CGRectMake(0, 0, 320, self.view.frame.size.height-14);
+    CGRect table_frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
     table1 = [[UITableView alloc] initWithFrame:table_frame style:UITableViewStylePlain];
     [table1 setDelegate:self];
     [table1 setDataSource:self];
@@ -107,11 +107,20 @@
         cell = [[JmTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier1];
         //[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
+
+    CGRect frameImage1 = CGRectMake(0, 0, 320, 320*[[programData programHeight:indexPath.row] intValue]/[[programData programWidth:indexPath.row] intValue]);
+    [cell.imageView setFrame:frameImage1];
+    
     NSString *imageStr = [programData programUrl:indexPath.row];
     NSURL *imageUrl = [NSURL URLWithString:imageStr];
     [cell.imageView setImageWithURL:imageUrl];
     
     return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 320 * [[programData programHeight:indexPath.row] intValue] / [[programData programWidth:indexPath.row] intValue];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

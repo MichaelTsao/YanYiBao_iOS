@@ -46,7 +46,20 @@
 
 -(NSString *)programUrl:(NSInteger)index
 {
-    return [_data objectAtIndex:index];
+    NSMutableDictionary *data = [_data objectAtIndex:index];
+    return [data objectForKey:@"url"];
+}
+
+-(NSNumber *)programWidth:(NSInteger)index
+{
+    NSMutableDictionary *data = [_data objectAtIndex:index];
+    return [data objectForKey:@"width"];
+}
+
+-(NSNumber *)programHeight:(NSInteger)index
+{
+    NSMutableDictionary *data = [_data objectAtIndex:index];
+    return [data objectForKey:@"height"];
 }
 
 @end

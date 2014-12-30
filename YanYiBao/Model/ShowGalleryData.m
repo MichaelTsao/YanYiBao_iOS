@@ -46,7 +46,20 @@
 
 -(NSString *)galleryUrl:(NSInteger)index
 {
-    return [_data objectAtIndex:index];
+    NSMutableDictionary *data = [_data objectAtIndex:index];
+    return [data objectForKey:@"url"];
+}
+
+-(NSNumber *)galleryWidth:(NSInteger)index
+{
+    NSMutableDictionary *data = [_data objectAtIndex:index];
+    return [data objectForKey:@"width"];
+}
+
+-(NSNumber *)galleryHeight:(NSInteger)index
+{
+    NSMutableDictionary *data = [_data objectAtIndex:index];
+    return [data objectForKey:@"height"];
 }
 
 @end

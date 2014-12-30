@@ -18,7 +18,6 @@
     UIScrollView *scrollView;
     UITableView *table1;
     ShowGalleryData *galleryData;
-    JmTableViewCell *one_cell;
 }
 @end
 
@@ -81,11 +80,12 @@
 
 -(void)initView
 {
-    CGRect table_frame = CGRectMake(0, 0, 320, self.view.frame.size.height-14);
+    CGRect table_frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
     table1 = [[UITableView alloc] initWithFrame:table_frame style:UITableViewStylePlain];
     [table1 setDelegate:self];
     [table1 setDataSource:self];
     table1.rowHeight = 88;
+    //table1.rowHeight = UITableViewAutomaticDimension;
     table1.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:table1];
 }
@@ -113,17 +113,14 @@
     
     NSString *imageStr = [galleryData galleryUrl:indexPath.row];
     NSURL *imageUrl = [NSURL URLWithString:imageStr];
-    one_cell = cell;
-    [cell.imageView setImageWithURLRequest:[[NSURLRequest alloc] initWithURL:imageUrl] placeholderImage:nil success:
-     ^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image){
-         CGFloat w = image.size.width;
-         CGFloat h = image.size.height;
-         CGRect frameImage1 = CGRectMake(0, 0, 320, 320*h/w);
-         [one_cell.imageView setFrame:frameImage1];
-     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
-     }];
+    [cell loadImage:imageUrl];
     
     return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 320 * [[galleryData galleryHeight:indexPath.row] intValue] / [[galleryData galleryWidth:indexPath.row] intValue];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

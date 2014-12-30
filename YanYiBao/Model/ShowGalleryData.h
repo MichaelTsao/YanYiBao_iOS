@@ -15,4 +15,6 @@
 
 -(NSInteger)galleryCount;
 -(NSString *)galleryUrl:(NSInteger)index;
+-(NSNumber *)galleryWidth:(NSInteger)index;
+-(NSNumber *)galleryHeight:(NSInteger)index;
 @end

@@ -8,6 +8,8 @@
 
 #import "JmTableViewCell.h"
 #import "UIColor+Helper.h"
+#import "AFNetworking.h"
+#import "AFHTTPClient.h"
 
 @implementation JmTableViewCell
 @synthesize imageView = _imageView;
@@ -25,6 +27,18 @@
         [self addSubview:_imageView];
     }
     return self;
+}
+
+- (void)loadImage:(NSURL*)url
+{
+    [_imageView setImageWithURLRequest:[[NSURLRequest alloc] initWithURL:url] placeholderImage:nil success:
+     ^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image){
+         CGFloat w = image.size.width;
+         CGFloat h = image.size.height;
+         CGRect frameImage1 = CGRectMake(0, 0, 320, 320*h/w);
+         [_imageView setFrame:frameImage1];
+     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
+     }];
 }
 
 - (void)awakeFromNib

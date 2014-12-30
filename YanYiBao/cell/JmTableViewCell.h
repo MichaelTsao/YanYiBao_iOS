@@ -9,7 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface JmTableViewCell : UITableViewCell
+{
+    UIImageView *imageView;
+}
 
 @property (nonatomic, strong) UIImageView *imageView;
+
+- (void)loadImage:(NSURL*)url;
 
 @end

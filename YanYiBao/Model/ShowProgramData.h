@@ -15,5 +15,7 @@
 
 -(NSInteger)programCount;
 -(NSString *)programUrl:(NSInteger)index;
+-(NSNumber *)programWidth:(NSInteger)index;
+-(NSNumber *)programHeight:(NSInteger)index;
 
 @end
