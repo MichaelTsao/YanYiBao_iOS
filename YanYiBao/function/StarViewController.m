@@ -61,7 +61,7 @@
 -(void)sendRequest
 {
     NSString *path = @"/show/star";
-    NSString *proId = [NSString stringWithFormat:@"%d",_starId];
+    NSString *proId = [NSString stringWithFormat:@"%ld",(long)_starId];
     NSDictionary *param = @{@"id":proId};
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",HOSTURL]];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:url];
@@ -84,7 +84,7 @@
 
 -(void)initView
 {
-    CGRect table_frame = CGRectMake(0, 0, 320, self.view.frame.size.height-14);
+    CGRect table_frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
     table1 = [[UITableView alloc] initWithFrame:table_frame style:UITableViewStylePlain];
     [table1 setDelegate:self];
     [table1 setDataSource:self];

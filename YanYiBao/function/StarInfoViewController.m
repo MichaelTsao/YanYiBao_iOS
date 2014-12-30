@@ -18,6 +18,8 @@
 }
 @end
 
+static CGRect oldframe;
+
 @implementation StarInfoViewController
 @synthesize starInfoId = _starInfoId, starInfoName = _starInfoName;
 
@@ -56,7 +58,7 @@
 -(void)sendRequest
 {
     NSString *path = @"/show/starInfo";
-    NSString *star = [NSString stringWithFormat:@"%d",_starInfoId];
+    NSString *star = [NSString stringWithFormat:@"%ld",(long)_starInfoId];
     NSDictionary *param = @{@"id":star};
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",HOSTURL]];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:url];
@@ -100,12 +102,50 @@
         NSURL *url = [NSURL URLWithString:urlimage];
         NSInteger height = i/5;
         NSInteger width = i%5;
-        UIImageView *picView = [[UIImageView alloc] init];
+        
+        UIButton *picView = [[UIButton alloc] init];
         [picView setFrame:CGRectMake(10 + (60 * width), 120 + (70 * height), 50, 50)];
-        [picView setImageWithURL:url];
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+        [picView setImage:image forState:UIControlStateNormal];
+        [picView addTarget:self action:@selector(showImage:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:picView];
     }
+}
+
+-(void)showImage:(UIButton *)sender{
+    UIImageView *view = sender.imageView;
+    UIImage *image = view.image;
+    UIWindow *window=[UIApplication sharedApplication].keyWindow;
+    UIView *backgroundView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    oldframe = [view convertRect:view.bounds toView:window];
+    backgroundView.backgroundColor=[UIColor blackColor];
+    backgroundView.alpha=0;
+    UIImageView *imageView=[[UIImageView alloc]initWithFrame:oldframe];
+    imageView.image=image;
+    imageView.tag=1;
+    [backgroundView addSubview:imageView];
+    [window addSubview:backgroundView];
     
+    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideImage:)];
+    [backgroundView addGestureRecognizer: tap];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        imageView.frame=CGRectMake(0,([UIScreen mainScreen].bounds.size.height-image.size.height*[UIScreen mainScreen].bounds.size.width/image.size.width)/2, [UIScreen mainScreen].bounds.size.width, image.size.height*[UIScreen mainScreen].bounds.size.width/image.size.width);
+        backgroundView.alpha=1;
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+-(void)hideImage:(UITapGestureRecognizer*)tap{
+    UIView *backgroundView=tap.view;
+    UIImageView *imageView=(UIImageView*)[tap.view viewWithTag:1];
+    [UIView animateWithDuration:0.3 animations:^{
+        imageView.frame=oldframe;
+        backgroundView.alpha=0;
+    } completion:^(BOOL finished) {
+        [backgroundView removeFromSuperview];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
