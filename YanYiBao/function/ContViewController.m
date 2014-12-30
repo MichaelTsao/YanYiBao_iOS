@@ -113,6 +113,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+
     // Do any additional setup after loading the view.
     self.title = _titleStr;
     self.navigationController.navigationBar.translucent = NO;

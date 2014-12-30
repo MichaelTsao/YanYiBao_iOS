@@ -9,7 +9,7 @@
 #import "SignViewController.h"
 #import "UIColor+Helper.h"
 
-@interface SignViewController ()<UITextFieldDelegate>
+@interface SignViewController() <UITextFieldDelegate>
 {
     UITextField *text1;
 }
