@@ -193,7 +193,7 @@
 
 -(void)btnPress:(UIButton *)sender
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"有问题"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"失败"
                                                     message:@""
                                                    delegate:self
                                           cancelButtonTitle:@"确认"
@@ -222,6 +222,7 @@
     
     NSString *path = @"/user/create";
     NSDictionary *param = @{@"user_id":text1.text, @"password":text2.text, @"name":text4.text};
+    NSLog(@"%@", text2.text);
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",HOSTURL]];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:url];
     [client getPath:path parameters:param
@@ -232,6 +233,7 @@
                 int status = [[dic objectForKey:@"status"] intValue];
                 if (status == 0) {
                     alert.message = @"注册成功";
+                    alert.title = @"成功";
                 }else if (status == 2) {
                     alert.message = @"参数不可为空";
                 }else if (status == 4) {

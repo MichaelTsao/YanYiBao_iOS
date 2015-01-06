@@ -10,6 +10,9 @@
 #import "UIColor+Helper.h"
 #import "ForgetViewController.h"
 #import "SignViewController.h"
+#import "AFNetworking.h"
+#import "AFHTTPClient.h"
+#import "JSONKit.h"
 
 @interface LoginViewController() <UITextFieldDelegate>
 {
@@ -145,7 +148,45 @@
 
 -(void)btnPress:(UIButton *)sender
 {
-    NSLog(@"立即登录");
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"失败"
+                                                    message:@""
+                                                   delegate:self
+                                          cancelButtonTitle:@"确认"
+                                          otherButtonTitles:nil];
+    
+    if ([text1.text isEqualToString:@""]) {
+        alert.message = @"用户名不可为空";
+        [alert show];
+        return;
+    }
+    if ([text2.text isEqualToString:@""]) {
+        alert.message = @"密码不可为空";
+        [alert show];
+        return;
+    }
+    
+    NSString *path = @"/user/login";
+    NSDictionary *param = @{@"user_id":text1.text, @"password":text2.text};
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",HOSTURL]];
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:url];
+    [client getPath:path parameters:param
+            success:^(AFHTTPRequestOperation *operation, id responseObject){
+                JSONDecoder *decoder = [[JSONDecoder alloc]init];
+                NSDictionary *dic = [decoder objectWithData:responseObject];
+                NSLog(@"%@", dic);
+                int status = [[dic objectForKey:@"status"] intValue];
+                if (status == 0) {
+                    alert.message = @"登录成功";
+                    alert.title = @"成功";
+                }else {
+                    alert.message = @"登录失败";
+                }
+                if (![alert.message isEqualToString:@""]) {
+                    [alert show];
+                }
+            }
+            failure:^(AFHTTPRequestOperation *operation, NSError *error){
+            }];
 }
 
 -(void)btnPress1:(UIButton *)sender
