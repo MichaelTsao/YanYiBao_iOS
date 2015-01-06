@@ -13,6 +13,8 @@
 #import "AFNetworking.h"
 #import "AFHTTPClient.h"
 #import "JSONKit.h"
+#import "AppDelegate.h"
+#import "ThirdViewController.h"
 
 @interface LoginViewController() <UITextFieldDelegate>
 {
@@ -130,6 +132,7 @@
     text2.delegate = self;
     [text2 setFont:[UIFont systemFontOfSize:14]];
     text2.tintColor = [UIColor colorWithHexString:@"#b5b6b6" withAlpha:1.0];
+    text2.secureTextEntry = YES;
     [self.view addSubview:text2];
 }
 
@@ -144,6 +147,41 @@
     [text1 resignFirstResponder];
     [text2 resignFirstResponder];
     return YES;
+}
+
++ (void)checkLogin
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *user = [userDefaults valueForKey:@"user"];
+    UIViewController *meController = nil;
+    NSString *class_name = nil;
+    if (user == nil) {
+        class_name = @"0";
+    }else{
+        class_name = @"1";
+    }
+    
+
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSString *n = [userDefaults objectForKey:@"currentView"];
+    if (![n isEqualToString:class_name]) {
+        if (user == nil) {
+            meController = [[LoginViewController alloc] init];
+            [userDefaults setObject:@"0" forKey:@"currentView"];
+        }else{
+            meController = appDelegate.myViewController;
+            [userDefaults setObject:@"1" forKey:@"currentView"];
+        }
+        
+        NSMutableArray *arr = [[NSMutableArray alloc] initWithArray:[appDelegate.tabViewController viewControllers]];
+        UINavigationController *thirdNav = [[UINavigationController alloc] initWithRootViewController:meController];
+        thirdNav.navigationBarHidden = YES;
+        [arr replaceObjectAtIndex:1 withObject:thirdNav];
+        [appDelegate.tabViewController setViewControllers:arr];
+        UITabBarItem *tabBarItem2 = [appDelegate.tabViewController.tabBar.items objectAtIndex:1];
+        tabBarItem2.title = @"我的";
+        tabBarItem2.image = [UIImage imageNamed:@"my"];
+    }
 }
 
 -(void)btnPress:(UIButton *)sender
@@ -175,11 +213,12 @@
                 NSDictionary *dic = [decoder objectWithData:responseObject];
                 NSLog(@"%@", dic);
                 int status = [[dic objectForKey:@"status"] intValue];
-                if (status == 0) {
-                    alert.message = @"登录成功";
-                    alert.title = @"成功";
-                }else {
+                if (status != 0) {
                     alert.message = @"登录失败";
+                }else{
+                    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                    [userDefaults setObject:@"r" forKey:@"user"];
+                    [LoginViewController checkLogin];
                 }
                 if (![alert.message isEqualToString:@""]) {
                     [alert show];

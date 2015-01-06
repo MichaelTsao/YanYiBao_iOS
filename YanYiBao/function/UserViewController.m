@@ -7,6 +7,8 @@
 //
 
 #import "UserViewController.h"
+#import "AFNetworking.h"
+#import "AFHTTPClient.h"
 
 @interface UserViewController ()
 
@@ -67,7 +69,19 @@
 
 -(void)btnPress:(UIButton *)sender
 {
-    NSLog(@"退出账户");
+    NSString *path = @"/user/logout";
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",HOSTURL]];
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:url];
+    [client getPath:path parameters:nil
+            success:^(AFHTTPRequestOperation *operation, id responseObject){
+                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                [userDefaults setObject:nil forKey:@"user"];
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            failure:^(AFHTTPRequestOperation *operation, NSError *error){
+            }];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated

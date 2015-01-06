@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "HomeViewController.h"
 #import "SecondViewController.h"
-#import "ThirdViewController.h"
 #import "ForthViewController.h"
 #import "UIColor+Helper.h"
 #import "UserInfoData.h"
@@ -39,10 +38,13 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *user = [userDefaults valueForKey:@"user"];
     UIViewController *meController = nil;
+    self.myViewController = [[ThirdViewController alloc] init];
     if (user == nil) {
         meController = [[LoginViewController alloc] init];
+        [userDefaults setObject:@"0" forKey:@"currentView"];
     }else{
-        meController = [[ThirdViewController alloc] init];
+        meController = self.myViewController;
+        [userDefaults setObject:@"1" forKey:@"currentView"];
     }
     
     UINavigationController *thirdNav = [[UINavigationController alloc] initWithRootViewController:meController];

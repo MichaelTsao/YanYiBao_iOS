@@ -10,6 +10,7 @@
 #import "UIColor+Helper.h"
 #import "BTableViewCell.h"
 #import "UserViewController.h"
+#import "LoginViewController.h"
 
 @interface ThirdViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -134,6 +135,7 @@
 {
     self.navigationController.navigationBarHidden = YES;
     [self.tabBarController.tabBar setHidden:NO];
+    [LoginViewController checkLogin];
 }
 
 - (void)didReceiveMemoryWarning

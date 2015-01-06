@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
+#import "ThirdViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate,MBProgressHUDDelegate>
 {
@@ -17,6 +18,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UITabBarController *tabViewController;
+@property (strong, nonatomic) ThirdViewController *myViewController;
 
 -(void)hideLoading;
 -(void)showLoading:(NSString *)info;
