@@ -381,7 +381,7 @@
         {
             NSLog(@"疯狂抢购");
             WebViewController *webView1 = [[WebViewController alloc] init];
-            webView1.urlString = [data showInfoBuyUrl];
+            webView1.urlString = @"http://www.zeeho.com/yyb/"; //[data showInfoBuyUrl];
             webView1.titleString = @"疯狂抢购";
             [self.navigationController pushViewController:webView1 animated:YES];
         }

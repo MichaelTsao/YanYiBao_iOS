@@ -33,8 +33,23 @@
         UIBarButtonItem * leftButton = [[UIBarButtonItem alloc] init];
         [leftButton setCustomView:backButton];
         self.navigationItem.leftBarButtonItem = leftButton;
+        
+        UIButton *shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [shareBtn setFrame:CGRectMake(0, 0, 60, 30)];
+        [shareBtn setTitle:@"后退" forState:UIControlStateNormal];
+        [shareBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [shareBtn addTarget:self action:@selector(backWeb:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem * rightBtn = [[UIBarButtonItem alloc] init];
+        [rightBtn setCustomView:shareBtn];
+        self.navigationItem.rightBarButtonItem = rightBtn;
     }
     return self;
+}
+
+-(void)backWeb:(UIButton *)sender
+{
+    [webView goBack];
 }
 
 -(void)backController:(UIButton *)sender
