@@ -11,7 +11,7 @@
 #import "ForgetViewController.h"
 #import "SignViewController.h"
 
-@interface LoginViewController ()<UITextFieldDelegate>
+@interface LoginViewController() <UITextFieldDelegate>
 {
     UITextField *text1;
     UITextField *text2;
@@ -67,7 +67,7 @@
     
     UILabel *label = [[UILabel alloc] init];
     [label setFrame:CGRectMake(10, 95, 120, 20)];
-    [label setText:@"演艺宝用户登录"];
+    [label setText:@"登录"];
     [label setFont:[UIFont systemFontOfSize:14]];
     [label setTextColor:[UIColor colorWithHexString:@"#797979" withAlpha:1.0]];
     [label setBackgroundColor:[UIColor clearColor]];
@@ -93,14 +93,14 @@
     [btn addTarget:self action:@selector(btnPress:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
     
-    UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn1 setFrame:CGRectMake(10, 280, 70, 30)];
-    [btn1.titleLabel setTextColor:[UIColor redColor]];
-    [btn1 setTitle:@"忘记密码" forState:UIControlStateNormal];
-    [btn1.titleLabel setFont:[UIFont systemFontOfSize:14]];
-    [btn1 setTitleColor:[UIColor colorWithHexString:@"#ff9900" withAlpha:1.0] forState:UIControlStateNormal];
-    [btn1 addTarget:self action:@selector(btnPress1:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn1];
+//    UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [btn1 setFrame:CGRectMake(10, 280, 70, 30)];
+//    [btn1.titleLabel setTextColor:[UIColor redColor]];
+//    [btn1 setTitle:@"忘记密码" forState:UIControlStateNormal];
+//    [btn1.titleLabel setFont:[UIFont systemFontOfSize:14]];
+//    [btn1 setTitleColor:[UIColor colorWithHexString:@"#ff9900" withAlpha:1.0] forState:UIControlStateNormal];
+//    [btn1 addTarget:self action:@selector(btnPress1:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:btn1];
     
     UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn2 setFrame:CGRectMake(240, 280, 70, 30)];
@@ -113,7 +113,7 @@
     
     text1 = [[UITextField alloc] init];
     [text1 setFrame:CGRectMake(50, 120, 260, 45)];
-    [text1 setPlaceholder:@"手机号/邮箱/用户名"];
+    [text1 setPlaceholder:@"用户名"];
     text1.returnKeyType = UIReturnKeyDone;
     text1.delegate = self;
     [text1 setFont:[UIFont systemFontOfSize:14]];
@@ -128,7 +128,6 @@
     [text2 setFont:[UIFont systemFontOfSize:14]];
     text2.tintColor = [UIColor colorWithHexString:@"#b5b6b6" withAlpha:1.0];
     [self.view addSubview:text2];
-
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -158,7 +157,7 @@
 -(void)btnPress2:(UIButton *)sender
 {
     SignViewController *signVC = [[SignViewController alloc] init];
-    [self.navigationController pushViewController:signVC animated:YES];
+    [self presentViewController:signVC animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning

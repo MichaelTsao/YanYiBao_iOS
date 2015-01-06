@@ -27,4 +27,6 @@
 -(NSString *)showInfoGuideUrl;
 -(NSString *)showInfoBuyUrl;
 
+@property (nonatomic, strong)NSMutableDictionary *data;
+
 @end

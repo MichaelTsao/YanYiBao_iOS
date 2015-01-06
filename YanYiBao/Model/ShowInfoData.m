@@ -11,8 +11,6 @@
 
 @interface ShowInfoData ()
 
-@property (nonatomic, strong)NSMutableDictionary *data;
-
 @end
 
 @implementation ShowInfoData

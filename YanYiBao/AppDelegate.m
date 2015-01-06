@@ -13,6 +13,7 @@
 #import "ForthViewController.h"
 #import "UIColor+Helper.h"
 #import "UserInfoData.h"
+#import "LoginViewController.h"
 
 @implementation AppDelegate
 @synthesize tabViewController;
@@ -35,8 +36,16 @@
     UINavigationController *homeNav = [[UINavigationController alloc] initWithRootViewController:homeVC];
     homeNav.navigationBarHidden = YES;
     
-    ThirdViewController *thirdVC = [[ThirdViewController alloc] init];
-    UINavigationController *thirdNav = [[UINavigationController alloc] initWithRootViewController:thirdVC];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *user = [userDefaults valueForKey:@"user"];
+    UIViewController *meController = nil;
+    if (user == nil) {
+        meController = [[LoginViewController alloc] init];
+    }else{
+        meController = [[ThirdViewController alloc] init];
+    }
+    
+    UINavigationController *thirdNav = [[UINavigationController alloc] initWithRootViewController:meController];
     thirdNav.navigationBarHidden = YES;
     
     ForthViewController *forthVC = [[ForthViewController alloc] init];
