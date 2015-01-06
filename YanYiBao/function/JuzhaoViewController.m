@@ -12,12 +12,15 @@
 #import "UserInfoData.h"
 #import "JmTableViewCell.h"
 #import "AFNetworking.h"
+#import "ShareView.h"
 
 @interface JuzhaoViewController ()<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     UIScrollView *scrollView;
     UITableView *table1;
     ShowGalleryData *galleryData;
+    BOOL isFlag;
+    ShareView *shareView;
 }
 @end
 
@@ -38,10 +41,58 @@
         UIBarButtonItem * leftButton = [[UIBarButtonItem alloc] init];
         [leftButton setCustomView:backButton];
         self.navigationItem.leftBarButtonItem = leftButton;
+        
+        UIImage *image1 = [UIImage imageNamed:@"xq_share"];
+        UIButton *shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [shareBtn setFrame:CGRectMake(0, 0, image1.size.width, image1.size.height)];
+        [shareBtn setBackgroundImage:image1 forState:UIControlStateNormal];
+        [shareBtn addTarget:self action:@selector(sharePress:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem * rightBtn = [[UIBarButtonItem alloc] init];
+        [rightBtn setCustomView:shareBtn];
+        self.navigationItem.rightBarButtonItem = rightBtn;
     }
     return self;
 }
 
+-(void)sharePress:(UIButton *)sender
+{
+    NSLog(@"rightBtn");
+    sender.selected = !sender.selected;
+    if (isFlag == NO) {
+        isFlag = YES;
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height)];
+        [view setTag:101];
+        [view setBackgroundColor:[UIColor colorWithHexString:@"#aaaaaa" withAlpha:0.2]];
+        //[view setAlpha:0.2];
+        [self.view addSubview:view];
+        
+        shareView = [[ShareView alloc] init];
+        if ([[UIScreen mainScreen] bounds].size.height > 500) {
+            [shareView setFrame:CGRectMake(0, 190, 320, 0)];
+        }else{
+            [shareView setFrame:CGRectMake(0, 104, 320, 0)];
+        }
+        [view addSubview:shareView];
+        
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setFrame:CGRectMake(0, view.frame.size.height -60, 320, 60)];
+        [btn setBackgroundColor:[UIColor clearColor]];
+        [btn addTarget:self action:@selector(shareBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:btn];
+    }else{
+        isFlag = NO;
+        UIView *view = (UIView*)[self.view viewWithTag:101];
+        [view removeFromSuperview];
+    }
+}
+
+-(void)shareBtn:(UIButton *)sender
+{
+    isFlag = NO;
+    UIView *view = (UIView*)[self.view viewWithTag:101];
+    [view removeFromSuperview];
+}
 
 -(void)backController:(UIButton *)sender
 {
